@@ -30,3 +30,21 @@ int FindMaxSum(int a[], int n)
         }
         return dp[n-1];
     }
+
+//---------------------SPACE OPTIMISE------
+int maximumNonAdjacentSum(vector<int> &a)
+{
+        int n=a.size();
+        int pre2=0,cur=0;
+        int pre=a[0];
+        for(int i=1;i<n;i++)
+        {
+            int pick=a[i];
+            if(i>1)pick+=pre2;
+            int notpick=0+pre;
+            cur=max(pick,notpick);
+            pre2=pre;
+            pre=cur;
+        }
+        return pre;
+}
