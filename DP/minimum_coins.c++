@@ -21,3 +21,31 @@ public:
         else return ans;
     }
 };
+//////////////////////////////////////////////////////////////////////////////
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int n=coins.size();
+        vector<int> pre(amount+1,0);
+        vector<int> cur(amount+1,0);
+        for(int sum=0;sum<=amount;sum++)
+        {
+            if(sum%coins[0]==0)pre[sum]=sum/coins[0];
+            else pre[sum]=1e9;
+        }
+        for(int i=1;i<n;i++)
+        {
+            for(int sum=0;sum<=amount;sum++)
+            {
+                int notpick=pre[sum];
+                int pick=INT_MAX;
+                if(coins[i]<=sum)pick=1+cur[sum-coins[i]];
+                cur[sum]=min(pick,notpick);
+            }
+            pre=cur;
+        }
+        int ans=pre[amount];
+        if(ans>=1e9)return -1;
+        else return ans;
+    }
+};
