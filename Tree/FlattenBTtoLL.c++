@@ -18,3 +18,16 @@ public:
         }
     }
 };
+
+
+//////////////////////////////////////////////////////////////////////
+Node *pre=NULL;
+    void flatten(Node *root)
+    {
+        if(!root)return;
+        flatten(root->right);
+        flatten(root->left);
+        root->right=pre;
+        root->left=NULL;
+        pre=root;
+    }
