@@ -11,9 +11,9 @@ public:
             }
             else
             {
-                while(!st.empty() && st.top()>0 && st.top()<-obj)st.pop();
-                if(!st.empty() && st.top()==-obj)st.pop();
-                else if(!st.empty() && st.top()>-obj);
+                while(!st.empty() && st.top()>0 && st.top()<-obj)st.pop();  // right moving destroyed
+                if(!st.empty() && st.top()==-obj)st.pop();  //both desroyed
+                else if(!st.empty() && st.top()>-obj);   //dont add in stack as left moving destroyed
                 else st.push(obj);
             }
         }
